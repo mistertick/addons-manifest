@@ -2,7 +2,7 @@
   {
     "id": "gustavohps10-redmine",
     "name": "Redmine",
-    "version": "0.8.0",
+    "version": "0.7.0",
     "categories": [
       "dataSource"
     ],
