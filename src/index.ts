@@ -28,15 +28,33 @@ function extractGitHubInfo(urlStr: string): { owner: string; repo: string } | nu
 }
 
 function extractYamlField(yaml: string, field: string): string | null {
-  const regex = new RegExp(`^\\s*${field}\\s*:\\s*(?:['"]?)([^'"\\r\\n]+?)(?:['"]?)\\s*$`, 'm')
+  const regex = new RegExp(
+    `^\\s*${field}\\s*:\\s*(?:['"]?)([^'"\\r\\n]+?)(?:['"]?)\\s*$`,
+    'm',
+  )
   const match = yaml.match(regex)
-  return match ? match[1].trim() : null
+  if (!match) {
+    return null
+  }
+  return match[1].trim()
+}
+
+function isObjectRecord(value: object | null | undefined): value is object {
+  return Boolean(value) && typeof value === 'object' && !Array.isArray(value)
+}
+
+function readOptionalStringProp(obj: object, key: string): string | undefined {
+  const entries = Object.entries(obj)
+  for (const [entryKey, entryVal] of entries) {
+    if (entryKey === key && typeof entryVal === 'string') {
+      return entryVal
+    }
+  }
+  return undefined
 }
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
-    const url = new URL(request.url)
-
     // Health check endpoint
     if (request.method === 'GET') {
       return new Response(
@@ -71,12 +89,22 @@ export default {
         )
       }
 
-      const body = (await request.json()) as {
-        addonId?: string
-        manifestUrl?: string
+      const rawBody: object | null = await request.json()
+      let rawAddonId: string | undefined = undefined
+      let manifestUrl: string | undefined = undefined
+      if (isObjectRecord(rawBody)) {
+        const addonIdCandidate = readOptionalStringProp(rawBody, 'addonId')
+        if (addonIdCandidate) {
+          rawAddonId = addonIdCandidate.trim()
+        }
+        const manifestUrlCandidate = readOptionalStringProp(
+          rawBody,
+          'manifestUrl',
+        )
+        if (manifestUrlCandidate) {
+          manifestUrl = manifestUrlCandidate.trim()
+        }
       }
-      const rawAddonId = body?.addonId?.trim()
-      const manifestUrl = body?.manifestUrl?.trim()
 
       if (!rawAddonId || !manifestUrl) {
         return new Response(
@@ -120,7 +148,26 @@ export default {
       }
 
       // 1. Faz o download do manifest.yaml a partir da URL oficial do repositório
-      const manifestRes = await fetch(manifestUrl)
+      const isOfficialMisterTick = ghInfo.owner.toLowerCase() === 'mistertick'
+      const manifestHeaders: Record<string, string> = {
+        'User-Agent': 'Mistertick-Addons-Registry-Worker',
+      }
+      if (isOfficialMisterTick) {
+        manifestHeaders.Authorization = `Bearer ${env.GITHUB_PAT}`
+      }
+
+      let manifestRes = await fetch(manifestUrl, { headers: manifestHeaders })
+      if (!manifestRes.ok && isOfficialMisterTick) {
+        const ghApiRawUrl = `https://api.github.com/repos/${ghInfo.owner}/${ghInfo.repo}/contents/manifest.yaml`
+        manifestRes = await fetch(ghApiRawUrl, {
+          headers: {
+            Authorization: `Bearer ${env.GITHUB_PAT}`,
+            'User-Agent': 'Mistertick-Addons-Registry-Worker',
+            Accept: 'application/vnd.github.v3.raw',
+          },
+        })
+      }
+
       if (!manifestRes.ok) {
         return new Response(
           JSON.stringify({
@@ -153,28 +200,44 @@ export default {
       if (!downloadUrl) {
         return new Response(
           JSON.stringify({
-            error: 'Manifesto inválido: campo obrigatório downloadUrl não encontrado.',
+            error:
+              'Manifesto inválido: campo obrigatório downloadUrl não encontrado.',
           }),
           { headers: { 'Content-Type': 'application/json' }, status: 400 },
         )
       }
 
-      // Validação de domínio de download (deve ser release do repositório e extensão .tladdon)
-      const expectedReleasePrefix = `https://github.com/${ghInfo.owner}/${ghInfo.repo}/releases/download/`.toLowerCase()
-      if (
-        !downloadUrl.toLowerCase().startsWith(expectedReleasePrefix) ||
-        !downloadUrl.toLowerCase().endsWith('.tladdon')
-      ) {
+      // Validação de domínio de download (release pública .tladdon OU rota Plus oficial para org mistertick)
+      const expectedReleasePrefix =
+        `https://github.com/${ghInfo.owner}/${ghInfo.repo}/releases/download/`.toLowerCase()
+      const expectedPlusPrefix = `https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/${addonId.toLowerCase()}/versions/`
+      const lowerDownloadUrl = downloadUrl.toLowerCase()
+      const isValidGithubRelease =
+        lowerDownloadUrl.startsWith(expectedReleasePrefix) &&
+        lowerDownloadUrl.endsWith('.tladdon')
+      const isValidPlusDownload =
+        isOfficialMisterTick &&
+        lowerDownloadUrl.startsWith(expectedPlusPrefix) &&
+        (lowerDownloadUrl.endsWith('/download') ||
+          lowerDownloadUrl.endsWith('/download.tladdon'))
+
+      if (!isValidGithubRelease && !isValidPlusDownload) {
         return new Response(
           JSON.stringify({
-            error: `downloadUrl não autorizada: o binário deve ser uma release oficial hospedada em '${expectedReleasePrefix}...' e possuir a extensão '.tladdon'.`,
+            error: `downloadUrl não autorizada: o binário deve ser uma release oficial hospedada em '${expectedReleasePrefix}...' (.tladdon) ou uma rota Plus oficial da org mistertick.`,
           }),
           { headers: { 'Content-Type': 'application/json' }, status: 400 },
         )
       }
 
-      const owner = env.GITHUB_OWNER || 'mistertick'
-      const repo = env.GITHUB_REPO || 'addons-manifest'
+      let owner = 'mistertick'
+      if (env.GITHUB_OWNER && env.GITHUB_OWNER.trim().length > 0) {
+        owner = env.GITHUB_OWNER.trim()
+      }
+      let repo = 'addons-manifest'
+      if (env.GITHUB_REPO && env.GITHUB_REPO.trim().length > 0) {
+        repo = env.GITHUB_REPO.trim()
+      }
       const filePath = `addons/${addonId}.yaml`
       const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`
 
@@ -189,25 +252,37 @@ export default {
       })
 
       if (checkFileRes.ok) {
-        const fileJson = (await checkFileRes.json()) as { sha?: string; content?: string }
-        fileSha = fileJson.sha
+        const rawFileJson: object | null = await checkFileRes.json()
+        let existingContent: string | undefined = undefined
+        if (isObjectRecord(rawFileJson)) {
+          fileSha = readOptionalStringProp(rawFileJson, 'sha')
+          existingContent = readOptionalStringProp(rawFileJson, 'content')
+        }
 
         // 🔒 SEGURANÇA 4: Source Repository Lock (Prevenção de Sequestro / Addon Hijacking)
-        if (fileJson.content) {
+        if (existingContent) {
           try {
-            const existingYaml = atob(fileJson.content.replace(/\s/g, ''))
-            const existingSourceUrl = extractYamlField(existingYaml, 'sourceUrl')
+            const existingYaml = atob(existingContent.replace(/\s/g, ''))
+            const existingSourceUrl = extractYamlField(
+              existingYaml,
+              'sourceUrl',
+            )
             if (existingSourceUrl) {
               const existingGh = extractGitHubInfo(existingSourceUrl)
               if (existingGh) {
-                const incomingRepo = `${ghInfo.owner}/${ghInfo.repo}`.toLowerCase()
-                const existingRepo = `${existingGh.owner}/${existingGh.repo}`.toLowerCase()
+                const incomingRepo =
+                  `${ghInfo.owner}/${ghInfo.repo}`.toLowerCase()
+                const existingRepo =
+                  `${existingGh.owner}/${existingGh.repo}`.toLowerCase()
                 if (incomingRepo !== existingRepo) {
                   return new Response(
                     JSON.stringify({
                       error: `Acesso negado (Source Repository Lock): o addon '${addonId}' pertence ao repositório '${existingGh.owner}/${existingGh.repo}' e não pode ser sobrescrito por '${ghInfo.owner}/${ghInfo.repo}'.`,
                     }),
-                    { headers: { 'Content-Type': 'application/json' }, status: 403 },
+                    {
+                      headers: { 'Content-Type': 'application/json' },
+                      status: 403,
+                    },
                   )
                 }
               }
@@ -261,11 +336,15 @@ export default {
         }),
         { headers: { 'Content-Type': 'application/json' }, status: 200 },
       )
-    } catch (err: any) {
+    } catch (err) {
+      let details = String(err)
+      if (err instanceof Error) {
+        details = err.message
+      }
       return new Response(
         JSON.stringify({
           error: 'Erro interno no Worker',
-          details: err?.message || String(err),
+          details,
         }),
         { headers: { 'Content-Type': 'application/json' }, status: 500 },
       )
