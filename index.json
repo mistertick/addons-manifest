@@ -198,7 +198,7 @@
     ],
     "tier": "plus",
     "downloadUrl": "https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-discord/versions/0.1.0/download",
-    "sha256": "377a5430ec576ea95ec24b28f58bf7535f7d466ec4e66e730744dcac29e1702e",
+    "sha256": "c123d510cdc7ca556a1dab4f05723aaac9bde9fb35a1eae3c73a90b676592714",
     "size": 1334998,
     "requiredApiVersion": ">=0.8.1",
     "releaseDate": "2026-10-13",
@@ -211,7 +211,7 @@
         "downloadUrl": "https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-discord/versions/0.1.0/download",
         "requiredApiVersion": ">=0.8.1",
         "releaseDate": "2026-10-13",
-        "sha256": "377a5430ec576ea95ec24b28f58bf7535f7d466ec4e66e730744dcac29e1702e",
+        "sha256": "c123d510cdc7ca556a1dab4f05723aaac9bde9fb35a1eae3c73a90b676592714",
         "size": 1334998,
         "changelog": [
           "Release 0.1.0"
