@@ -1,7 +1,7 @@
 id: mistertick-discord
 name: Discord Presence
 version: 0.2.0
-categories:
+capabilities:
   - watcher
 author: Mister Tick
 shortDescription: Captura automática de chamadas de voz e presença no Discord Desktop via IPC.

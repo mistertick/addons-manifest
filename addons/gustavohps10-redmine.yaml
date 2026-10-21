@@ -1,7 +1,7 @@
 id: gustavohps10-redmine
 name: Redmine
 version: 0.8.2
-categories:
+capabilities:
   - dataSource
   - theme
 author: Gustavo Henrique
