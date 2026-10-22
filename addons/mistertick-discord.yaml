@@ -1,6 +1,6 @@
 id: mistertick-discord
 name: Discord Presence
-version: 0.2.0
+version: 0.3.0
 capabilities:
   - watcher
 author: Mister Tick
@@ -15,14 +15,22 @@ tags:
   - voice
   - plus
 tier: plus
-downloadUrl: https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-discord/versions/0.2.0/download
-sha256: 4aa0c44f0b2d51670b94ad0b6a85f5ffca88d4a59337ac385e6dc75734ccc2c1
-size: 721226
-requiredApiVersion: '>=0.9.0'
-releaseDate: '2026-10-17'
+downloadUrl: https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-discord/versions/0.3.0/download
+sha256: f4631b54d2dc63e3ab8312d88c38e4ebd9cf8cf34773fe22fef427a1218def7c
+size: 729988
+requiredApiVersion: '>=0.10.0'
+releaseDate: '2026-10-22'
 changelog:
   - Release 0.1.0
 packages:
+  - version: 0.3.0
+    downloadUrl: https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-discord/versions/0.3.0/download
+    requiredApiVersion: '>=0.10.0'
+    releaseDate: '2026-10-22'
+    sha256: f4631b54d2dc63e3ab8312d88c38e4ebd9cf8cf34773fe22fef427a1218def7c
+    size: 729988
+    changelog:
+      - Release 0.1.0
   - version: 0.2.0
     downloadUrl: https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-discord/versions/0.2.0/download
     requiredApiVersion: '>=0.9.0'
