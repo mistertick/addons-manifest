@@ -6,7 +6,7 @@ Repositório central do catálogo oficial de Addons (Plugins) para o **Mr. Tick 
 
 ## 🚀 Arquitetura de Publicação Automática (Marketplace Pipeline)
 
-O Mr. Tick possui um pipeline de ingestão **100% autônomo e contínuo**, sem necessidade de forks manuais ou tokens para desenvolvedores da comunidade:
+O catálogo recebe os manifestos publicados pelos addons e gera o índice que o aplicativo consulta. O serviço de publicação usa uma credencial própria do GitHub; o desenvolvedor não precisa receber essa credencial.
 
 ```text
 ┌────────────────────────────────┐       ┌────────────────────────────────┐       ┌────────────────────────────────┐
@@ -14,7 +14,7 @@ O Mr. Tick possui um pipeline de ingestão **100% autônomo e contínuo**, sem n
 │  (ex: redmine-plugin)          │       │  (mistertick.workers.dev)        │       │  (Este Repositório)            │
 │                                │       │                                │       │                                │
 │ • Desenvolve com @mr-tick/sdk  │       │ • Recebe POST automático       │       │ • Salva em addons/<id>.yaml    │
-│ • git tag v0.1.0 && push       │──────>│ • Valida e extrai o manifesto  │──────>│ • generate-index.yml compila   │
+│ • Publica versão pelo CI       │──────>│ • Valida e extrai o manifesto  │──────>│ • generate-index.yml compila   │
 │ • CI gera release com .tladdon │       │ • Grava direto na branch main  │       │ • index.json atualizado no ar! │
 └────────────────────────────────┘       └────────────────────────────────┘       └────────────────────────────────┘
                                                                                               │
@@ -42,7 +42,7 @@ Na raiz do seu plugin, configure o `manifest.yaml`:
 id: seuusuario-nomeaddon
 name: Nome do Addon
 version: 0.1.0
-categories:
+capabilities:
   - dataSource
 author: Seu Nome
 shortDescription: Resumo curto de 1 linha para a vitrine
@@ -57,13 +57,13 @@ screenshots:
   - url: https://raw.githubusercontent.com/seuusuario/seurepo/main/screenshots/overview.png
     caption: Tela Principal
 downloadUrl: https://github.com/seuusuario/seurepo/releases/download/v0.1.0/seuusuario-nomeaddon-0.1.0.tladdon
-requiredApiVersion: '>=0.1.0'
+requiredApiVersion: '>=0.10.0'
 releaseDate: '2026-08-27'
 changelog:
   - Versão inicial
 packages:
   - version: 0.1.0
-    requiredApiVersion: '>=0.1.0'
+    requiredApiVersion: '>=0.10.0'
     releaseDate: '2026-08-27'
     downloadUrl: https://github.com/seuusuario/seurepo/releases/download/v0.1.0/seuusuario-nomeaddon-0.1.0.tladdon
     changelog:
@@ -71,14 +71,11 @@ packages:
 ```
 
 ### 3. Publicar uma Nova Versão
-No repositório do seu Addon, basta criar e enviar uma tag Git:
+Use o processo de versão do repositório do addon. Nos addons oficiais, registre mudanças de versão com Changesets; não edite versões nem changelogs manualmente.
 
-```bash
-git tag v0.1.0
-git push origin main --tags
-```
+O processo de publicação precisa gerar o pacote `.tladdon`, disponibilizá-lo em uma Release do GitHub e enviar a URL do manifesto ao serviço abaixo. Consulte o workflow do addon de referência antes de configurar o seu.
 
-O workflow de CI/CD do plugin compilará o pacote `.tladdon`, criará a Release no GitHub e notificará o endpoint oficial do Mr. Tick (`https://addons-manifest.mistertick.workers.dev/`). Em menos de **30 segundos**, o plugin estará disponível na vitrine oficial do Mr. Tick App!
+A atualização da vitrine depende da conclusão dos workflows e da próxima consulta do aplicativo ao catálogo. Não há prazo fixo de publicação. Para conhecer as funcionalidades que um addon pode oferecer, consulte o [SDK](https://mistertick.com/pt-br/docs).
 
 ---
 
