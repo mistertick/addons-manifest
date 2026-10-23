@@ -1,7 +1,8 @@
 id: mistertick-discord
 name: Discord Presence
-version: 0.3.0
+version: 0.4.0
 capabilities:
+  - auth
   - watcher
 author: Mister Tick
 shortDescription: Captura automática de chamadas de voz e presença no Discord Desktop via IPC.
@@ -15,17 +16,25 @@ tags:
   - voice
   - plus
 tier: plus
-downloadUrl: https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-discord/versions/0.3.0/download
-sha256: f4631b54d2dc63e3ab8312d88c38e4ebd9cf8cf34773fe22fef427a1218def7c
-size: 729988
-requiredApiVersion: '>=0.10.0'
-releaseDate: '2026-10-22'
+downloadUrl: https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-discord/versions/0.4.0/download
+sha256: 3338659228d6f5e2ac305a3fe39676afb1c079bf4e06de7398f3a669c3efed18
+size: 731319
+requiredApiVersion: '>=0.11.0'
+releaseDate: '2026-10-23'
 changelog:
   - Release 0.1.0
 packages:
+  - version: 0.4.0
+    downloadUrl: https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-discord/versions/0.4.0/download
+    requiredApiVersion: '>=0.11.0'
+    releaseDate: '2026-10-23'
+    sha256: 3338659228d6f5e2ac305a3fe39676afb1c079bf4e06de7398f3a669c3efed18
+    size: 731319
+    changelog:
+      - Release 0.1.0
   - version: 0.3.0
     downloadUrl: https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-discord/versions/0.3.0/download
-    requiredApiVersion: '>=0.10.0'
+    requiredApiVersion: '>=0.11.0'
     releaseDate: '2026-10-22'
     sha256: f4631b54d2dc63e3ab8312d88c38e4ebd9cf8cf34773fe22fef427a1218def7c
     size: 729988
