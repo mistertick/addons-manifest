@@ -1,6 +1,6 @@
 id: mistertick-dracula
 name: Dracula
-version: 0.1.0
+version: 0.2.0
 capabilities:
   - theme
 author: Mr. Tick
@@ -15,20 +15,28 @@ tags:
   - dark
   - light
 tier: free
-requiredApiVersion: '>=0.10.0'
-main: dist/index.js
-downloadUrl: https://github.com/mistertick/dracula-theme/releases/download/v0.1.0/mistertick-dracula-0.1.0.tladdon
-releaseDate: '2026-10-22'
+downloadUrl: https://github.com/mistertick/dracula-theme/releases/download/v0.2.0/mistertick-dracula-0.2.0.tladdon
+requiredApiVersion: '>=0.11.0'
+releaseDate: '2026-10-23'
 changelog:
   - Release 0.1.0
 packages:
+  - version: 0.2.0
+    requiredApiVersion: '>=0.11.0'
+    releaseDate: '2026-10-23'
+    downloadUrl: https://github.com/mistertick/dracula-theme/releases/download/v0.2.0/mistertick-dracula-0.2.0.tladdon
+    sha256: 22dc6a95ae3dc711aa3243d0385030907fba5eead13252b3c40c13ea11ac7fc2
+    size: 22541
+    changelog:
+      - Release 0.1.0
   - version: 0.1.0
-    requiredApiVersion: '>=0.10.0'
-    releaseDate: '2026-10-22'
     downloadUrl: https://github.com/mistertick/dracula-theme/releases/download/v0.1.0/mistertick-dracula-0.1.0.tladdon
+    requiredApiVersion: '>=0.11.0'
+    releaseDate: '2026-10-22'
     sha256: cf1613e3aaf0eaed8e6f45fd1bec1c798325d80aa30e1c1072db7e5601cd2abe
     size: 22445
     changelog:
       - Release 0.1.0
-sha256: cf1613e3aaf0eaed8e6f45fd1bec1c798325d80aa30e1c1072db7e5601cd2abe
-size: 22445
+main: dist/index.js
+sha256: 22dc6a95ae3dc711aa3243d0385030907fba5eead13252b3c40c13ea11ac7fc2
+size: 22541
