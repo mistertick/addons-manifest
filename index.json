@@ -279,12 +279,12 @@
   {
     "id": "mistertick-discord",
     "name": "Discord Presence",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "capabilities": [
       "auth",
       "watcher"
     ],
-    "author": "Mister Tick",
+    "author": "Mr. Tick",
     "shortDescription": "Captura automática de chamadas de voz e presença no Discord Desktop via IPC.",
     "description": "Conector oficial Mr. Tick Plus para sincronizar status do timer e gerar sugestões automáticas de apontamento ao encerrar chamadas de voz no aplicativo Discord Desktop via IPC nativo e OAuth2 PKCE.",
     "iconUrl": "https://mistertick.com/ui/temp-plugins-icons/discord.png",
@@ -297,15 +297,26 @@
       "plus"
     ],
     "tier": "plus",
-    "downloadUrl": "https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-discord/versions/0.4.0/download",
-    "sha256": "3338659228d6f5e2ac305a3fe39676afb1c079bf4e06de7398f3a669c3efed18",
-    "size": 731319,
-    "requiredApiVersion": ">=0.11.0",
-    "releaseDate": "2026-10-23",
+    "downloadUrl": "https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-discord/versions/0.5.0/download",
+    "sha256": "4fab64fac6bd5588138ea6919cdc0bee3d47920a04d9cc4424cd3e9cbdfb259d",
+    "size": 731517,
+    "requiredApiVersion": ">=0.12.0",
+    "releaseDate": "2026-10-24",
     "changelog": [
       "Release 0.1.0"
     ],
     "packages": [
+      {
+        "version": "0.5.0",
+        "downloadUrl": "https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-discord/versions/0.5.0/download",
+        "requiredApiVersion": ">=0.12.0",
+        "releaseDate": "2026-10-24",
+        "sha256": "4fab64fac6bd5588138ea6919cdc0bee3d47920a04d9cc4424cd3e9cbdfb259d",
+        "size": 731517,
+        "changelog": [
+          "Release 0.1.0"
+        ]
+      },
       {
         "version": "0.4.0",
         "downloadUrl": "https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-discord/versions/0.4.0/download",
