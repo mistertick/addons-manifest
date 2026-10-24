@@ -366,7 +366,7 @@
   {
     "id": "mistertick-dracula",
     "name": "Dracula",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "capabilities": [
       "theme"
     ],
@@ -383,18 +383,29 @@
       "light"
     ],
     "tier": "free",
-    "downloadUrl": "https://github.com/mistertick/dracula-theme/releases/download/v0.2.0/mistertick-dracula-0.2.0.tladdon",
-    "requiredApiVersion": ">=0.11.0",
-    "releaseDate": "2026-10-23",
+    "downloadUrl": "https://github.com/mistertick/dracula-theme/releases/download/v0.3.0/mistertick-dracula-0.3.0.tladdon",
+    "requiredApiVersion": ">=0.12.0",
+    "releaseDate": "2026-10-24",
     "changelog": [
       "Release 0.1.0"
     ],
     "packages": [
       {
+        "version": "0.3.0",
+        "requiredApiVersion": ">=0.12.0",
+        "releaseDate": "2026-10-24",
+        "downloadUrl": "https://github.com/mistertick/dracula-theme/releases/download/v0.3.0/mistertick-dracula-0.3.0.tladdon",
+        "sha256": "22c8e93a87149f5987c9a2986ed9c8d577302822cdc787789d261fe5b1898446",
+        "size": 22615,
+        "changelog": [
+          "Release 0.1.0"
+        ]
+      },
+      {
         "version": "0.2.0",
+        "downloadUrl": "https://github.com/mistertick/dracula-theme/releases/download/v0.2.0/mistertick-dracula-0.2.0.tladdon",
         "requiredApiVersion": ">=0.11.0",
         "releaseDate": "2026-10-23",
-        "downloadUrl": "https://github.com/mistertick/dracula-theme/releases/download/v0.2.0/mistertick-dracula-0.2.0.tladdon",
         "sha256": "22dc6a95ae3dc711aa3243d0385030907fba5eead13252b3c40c13ea11ac7fc2",
         "size": 22541,
         "changelog": [
@@ -414,7 +425,7 @@
       }
     ],
     "main": "dist/index.js",
-    "sha256": "22dc6a95ae3dc711aa3243d0385030907fba5eead13252b3c40c13ea11ac7fc2",
-    "size": 22541
+    "sha256": "22c8e93a87149f5987c9a2986ed9c8d577302822cdc787789d261fe5b1898446",
+    "size": 22615
   }
 ]
