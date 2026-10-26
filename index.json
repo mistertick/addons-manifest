@@ -2,7 +2,7 @@
   {
     "id": "gustavohps10-claude",
     "name": "Claude Theme",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "capabilities": [
       "theme"
     ],
@@ -19,18 +19,29 @@
       "light"
     ],
     "tier": "free",
-    "downloadUrl": "https://github.com/Gustavohps10/claude-theme/releases/download/v0.2.0/gustavohps10-claude-0.2.0.tladdon",
-    "requiredApiVersion": ">=0.12.0",
-    "releaseDate": "2026-10-24",
+    "downloadUrl": "https://github.com/Gustavohps10/claude-theme/releases/download/v0.2.1/gustavohps10-claude-0.2.1.tladdon",
+    "requiredApiVersion": ">=0.13.0",
+    "releaseDate": "2026-10-26",
     "changelog": [
       "Release 0.1.0"
     ],
     "packages": [
       {
+        "version": "0.2.1",
+        "requiredApiVersion": ">=0.13.0",
+        "releaseDate": "2026-10-26",
+        "downloadUrl": "https://github.com/Gustavohps10/claude-theme/releases/download/v0.2.1/gustavohps10-claude-0.2.1.tladdon",
+        "sha256": "87b5ce3dcd9b26bbcaffcb8f164f8f7ad9cdbcb8f71782358329b76f1ac26199",
+        "size": 1748391,
+        "changelog": [
+          "Release 0.1.0"
+        ]
+      },
+      {
         "version": "0.2.0",
+        "downloadUrl": "https://github.com/Gustavohps10/claude-theme/releases/download/v0.2.0/gustavohps10-claude-0.2.0.tladdon",
         "requiredApiVersion": ">=0.12.0",
         "releaseDate": "2026-10-24",
-        "downloadUrl": "https://github.com/Gustavohps10/claude-theme/releases/download/v0.2.0/gustavohps10-claude-0.2.0.tladdon",
         "sha256": "b3346f8b6f616f9ea3c03d158c0aaad6058fcdb2976c51b1439ba8e83be30c46",
         "size": 1748323,
         "changelog": [
@@ -61,8 +72,8 @@
       }
     ],
     "main": "dist/index.js",
-    "sha256": "b3346f8b6f616f9ea3c03d158c0aaad6058fcdb2976c51b1439ba8e83be30c46",
-    "size": 1748323
+    "sha256": "87b5ce3dcd9b26bbcaffcb8f164f8f7ad9cdbcb8f71782358329b76f1ac26199",
+    "size": 1748391
   },
   {
     "id": "gustavohps10-redmine",
