@@ -486,17 +486,15 @@
   {
     "id": "mistertick-jira",
     "name": "Jira Cloud",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "capabilities": [
       "auth",
       "dataSource"
     ],
     "author": "Mr. Tick",
-    "tier": "plus",
-    "requiredApiVersion": ">=0.13.0",
-    "iconUrl": "https://raw.githubusercontent.com/mistertick/jira-addon/main/icon.png",
     "shortDescription": "Issues e apontamentos do Jira Cloud no Mr. Tick.",
     "description": "Integração Jira Cloud com API token, leitura de issues e sincronização de worklogs. Em desenvolvimento; depende da evolução do SDK.",
+    "iconUrl": "https://raw.githubusercontent.com/mistertick/jira-addon/main/icon.png",
     "sourceUrl": "https://github.com/mistertick/jira-addon",
     "homepage": "https://mistertick.com",
     "tags": [
@@ -504,26 +502,38 @@
       "cloud",
       "plus"
     ],
-    "main": "dist/index.js",
-    "downloadUrl": "https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-jira/versions/0.1.0/download",
+    "tier": "plus",
+    "downloadUrl": "https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-jira/versions/0.2.0/download",
+    "sha256": "39a17f359c906687f926652190ac79e2b4c8a66be62d0e10a9c2e7bbad958156",
+    "size": 721147,
+    "requiredApiVersion": ">=0.13.0",
     "releaseDate": "2026-10-26",
     "changelog": [
       "Release 0.1.0"
     ],
     "packages": [
       {
-        "version": "0.1.0",
+        "version": "0.2.0",
+        "downloadUrl": "https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-jira/versions/0.2.0/download",
         "requiredApiVersion": ">=0.13.0",
         "releaseDate": "2026-10-26",
+        "sha256": "39a17f359c906687f926652190ac79e2b4c8a66be62d0e10a9c2e7bbad958156",
+        "size": 721147,
+        "changelog": [
+          "Release 0.1.0"
+        ]
+      },
+      {
+        "version": "0.1.0",
         "downloadUrl": "https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-jira/versions/0.1.0/download",
+        "requiredApiVersion": ">=0.13.0",
+        "releaseDate": "2026-10-26",
         "sha256": "64859eac224cc549fd783bec55663b8d95cf70300d840b8f47dedd276ec86b6d",
         "size": 721188,
         "changelog": [
           "Release 0.1.0"
         ]
       }
-    ],
-    "sha256": "64859eac224cc549fd783bec55663b8d95cf70300d840b8f47dedd276ec86b6d",
-    "size": 721188
+    ]
   }
 ]
