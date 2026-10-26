@@ -98,3 +98,7 @@ A atualização da vitrine depende da conclusão dos workflows e da próxima con
 
 - Os arquivos de cada addon vivem individualmente em `addons/<addon-id>.yaml`.
 - Toda alteração na pasta `addons/**` dispara o workflow [`.github/workflows/generate-index.yml`](.github/workflows/generate-index.yml), que consolida todos os manifestos no arquivo `index.json` na raiz.
+
+## Authentication capability
+
+SDK 0.11 introduces `auth` for addons that register connection profiles and authenticators. It is independent of `dataSource` and `watcher`; themes without accounts do not declare it. Publish compatible SDK, desktop and addon packages before refreshing the catalog. Never rewrite metadata of an existing package to claim it was rebuilt with the new contract.
