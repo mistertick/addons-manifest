@@ -486,7 +486,7 @@
   {
     "id": "mistertick-jira",
     "name": "Jira Cloud",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "capabilities": [
       "auth",
       "dataSource"
@@ -494,7 +494,7 @@
     "author": "Mr. Tick",
     "shortDescription": "Issues e apontamentos do Jira Cloud no Mr. Tick.",
     "description": "Integração Jira Cloud com API token, leitura de issues e sincronização de worklogs. Em desenvolvimento; depende da evolução do SDK.",
-    "iconUrl": "https://raw.githubusercontent.com/mistertick/jira-addon/main/icon.png",
+    "iconUrl": "https://mistertick.com/ui/temp-plugins-icons/jira.png",
     "sourceUrl": "https://github.com/mistertick/jira-addon",
     "homepage": "https://mistertick.com",
     "tags": [
@@ -503,15 +503,26 @@
       "plus"
     ],
     "tier": "plus",
-    "downloadUrl": "https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-jira/versions/0.2.0/download",
-    "sha256": "39a17f359c906687f926652190ac79e2b4c8a66be62d0e10a9c2e7bbad958156",
-    "size": 721147,
+    "downloadUrl": "https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-jira/versions/0.2.1/download",
+    "sha256": "b0c5fa3885eb26f1d8d0f37c7f9bae44dbd68c02c1e64f9db19b8857ae455b2b",
+    "size": 721203,
     "requiredApiVersion": ">=0.13.0",
     "releaseDate": "2026-10-26",
     "changelog": [
       "Release 0.1.0"
     ],
     "packages": [
+      {
+        "version": "0.2.1",
+        "downloadUrl": "https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-jira/versions/0.2.1/download",
+        "requiredApiVersion": ">=0.13.0",
+        "releaseDate": "2026-10-26",
+        "sha256": "b0c5fa3885eb26f1d8d0f37c7f9bae44dbd68c02c1e64f9db19b8857ae455b2b",
+        "size": 721203,
+        "changelog": [
+          "Release 0.1.0"
+        ]
+      },
       {
         "version": "0.2.0",
         "downloadUrl": "https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-jira/versions/0.2.0/download",
