@@ -312,7 +312,7 @@
   {
     "id": "mistertick-discord",
     "name": "Discord Presence",
-    "version": "0.5.1",
+    "version": "0.6.0",
     "capabilities": [
       "auth",
       "watcher"
@@ -330,15 +330,26 @@
       "plus"
     ],
     "tier": "plus",
-    "downloadUrl": "https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-discord/versions/0.5.1/download",
-    "sha256": "a203f46baaa688fa7215861d5210048f1e1f920872a7f19795f044f5df27ef75",
-    "size": 733115,
-    "requiredApiVersion": ">=0.13.0",
-    "releaseDate": "2026-10-26",
+    "downloadUrl": "https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-discord/versions/0.6.0/download",
+    "sha256": "a1dad10b820359dcfb1033d812c075007eca476e47f9f5ae814dfb528cce6979",
+    "size": 758265,
+    "requiredApiVersion": ">=0.14.0",
+    "releaseDate": "2026-11-05",
     "changelog": [
       "Release 0.1.0"
     ],
     "packages": [
+      {
+        "version": "0.6.0",
+        "downloadUrl": "https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-discord/versions/0.6.0/download",
+        "requiredApiVersion": ">=0.14.0",
+        "releaseDate": "2026-11-05",
+        "sha256": "a1dad10b820359dcfb1033d812c075007eca476e47f9f5ae814dfb528cce6979",
+        "size": 758265,
+        "changelog": [
+          "Release 0.1.0"
+        ]
+      },
       {
         "version": "0.5.1",
         "downloadUrl": "https://mistertick-api.mistertick.workers.dev/catalog/plus-addons/mistertick-discord/versions/0.5.1/download",
